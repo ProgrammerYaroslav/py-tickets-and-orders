@@ -21,7 +21,6 @@ def get_movies_sessions(session_date: str = None) -> QuerySet:
 
 
 def MovieSession.objects.get(id=movie_session_id: int) -> MovieSession:
-    return MovieSession.objects.get(id=movie_session_id)
 
 
 def update_movie_session(
@@ -37,7 +36,10 @@ def update_movie_session(
         movie_session.movie_id = movie_id
     if cinema_hall_id:
         movie_session.cinema_hall_id = cinema_hall_id
-    get(movie_session.save())
+    
+    
+def delete_movie_session_by_id(session_id: int) -> None:
+    MovieSession.objects.get(id=session_id).delete()
 
 
 def delete_movie_session_by_id(session_id: int) -> None:
